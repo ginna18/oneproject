@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('address',500);//direccion de envio 
             $table->rememberToken();
+            $table->unsignedBigInteger('role_id');
             $table->timestamps();
         });
     }
