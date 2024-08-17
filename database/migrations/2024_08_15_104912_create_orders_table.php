@@ -13,10 +13,17 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->user_id();//el id de la tabla users
+            $table->unsignedBigInteger('user_id');
             $table->string('status');//pendiente, procesado, enviado, completado, cancelado
             $table->float('total_price');//precio total del pedido
             $table->timestamps();
+
+            //establece claves foraneas
+
+        $table->foreign('user_id')->references('id')->on('users')
+        ->onUpdate('cascade')->onDelete('cascade');
+        //establece la clave primaria
+        $table->primary(['user_id']);
         });
     }
 

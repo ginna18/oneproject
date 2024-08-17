@@ -11,21 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_items', function (Blueprint $table) {
-            $table->id();//unico del predido
+        Schema::create('payments', function (Blueprint $table) {
+            $table->id();//identificador unico del pago
             $table->unsignedBigInteger('order_id');//id de la tabla orders
-            $table->unsignedBigInteger('product_id');//id de la tabla products
-            $table->integer('quantity');//cant de prods en el pedido
-            $table->float('price');//precio del producto 
+            $table->float('amount');//monto pagado
+            $table->string('payment_method');//metodo de pago(tarjeta, paypal,etc.) 
+            $table->integer('payment_status');//estado del pago(completado, pendiente, fallido)
             $table->timestamps();
 
             $table->foreign('order_id')->references('id')->on('orders')
             ->onUpdate('cascade')->onDelete('cascade');
-        $table->foreign('product_id')->references('id')->on('products')
-            ->onUpdate('cascade')->onDelete('cascade');
+        
 
             //establece la clave primaria
-            $table->primary(['order_id','procdut_id']);
+            $table->primary(['order_id']);
         });
     }
 
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_items');
+        Schema::dropIfExists('payments');
     }
 };

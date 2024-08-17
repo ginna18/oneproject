@@ -23,6 +23,13 @@ return new class extends Migration
             $table->rememberToken();
             $table->unsignedBigInteger('role_id');
             $table->timestamps();
+
+              //establece claves foraneas
+
+        $table->foreign('role_id')->references('id')->on('roles')
+        ->onUpdate('cascade')->onDelete('cascade');
+        //establece la clave primaria
+        $table->primary(['role_id']);
         });
     }
 
