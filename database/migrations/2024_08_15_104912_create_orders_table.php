@@ -14,16 +14,22 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('status');//pendiente, procesado, enviado, completado, cancelado
             $table->float('total_price');//precio total del pedido
+            $table->string('status');//pendiente, procesado, enviado, completado, cancelado
+            $table->unsignedBigInteger('payment_id');
+            $table->unsignedBigInteger('shipping_address_id');
             $table->timestamps();
 
             //establece claves foraneas
 
         $table->foreign('user_id')->references('id')->on('users')
         ->onUpdate('cascade')->onDelete('cascade');
+        $table->foreign('payment_id')->references('id')->on('payments')
+        ->onUpdate('cascade')->onDelete('cascade');
+        $table->foreign('shipping_address_id')->references('id')->on('shipping_addresses')
+        ->onUpdate('cascade')->onDelete('cascade');
         //establece la clave primaria
-        $table->primary(['user_id']);
+        $table->primary(['user_id','payment_id','shipping_address_id']);
         });
     }
 
