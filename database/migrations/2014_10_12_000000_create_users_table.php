@@ -28,8 +28,7 @@ return new class extends Migration
 
         $table->foreign('role_id')->references('id')->on('roles')
         ->onUpdate('cascade')->onDelete('cascade');
-        //establece la clave primaria
-        $table->primary(['role_id']);
+       
         });
     }
 

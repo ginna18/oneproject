@@ -28,8 +28,7 @@ return new class extends Migration
         ->onUpdate('cascade')->onDelete('cascade');
         $table->foreign('shipping_address_id')->references('id')->on('shipping_addresses')
         ->onUpdate('cascade')->onDelete('cascade');
-        //establece la clave primaria
-        $table->primary(['user_id','payment_id','shipping_address_id']);
+       
         });
     }
 

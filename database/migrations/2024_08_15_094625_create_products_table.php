@@ -17,14 +17,14 @@ return new class extends Migration
             $table->text('description');
             $table->float('price'); 
             $table->integer('stock');
-            $table->integer('category_id');//
+            $table->unsignedBigInteger('category_id');//
             $table->string('imagen',255);
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories')
         ->onUpdate('cascade')->onDelete('cascade');
         //establece la clave primaria
-        $table->primary(['category_id']);
+        
         });
     }
 

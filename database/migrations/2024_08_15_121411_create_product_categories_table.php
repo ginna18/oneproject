@@ -22,6 +22,10 @@ return new class extends Migration
             ->onUpdate('cascade')->onDelete('cascade');
 
             $table->primary(['product_id','category_id']);
+
+             // Índices adicionales para mejorar el rendimiento de las consultas
+             $table->index('product_id');
+             $table->index('category_id');
         });
     }
 

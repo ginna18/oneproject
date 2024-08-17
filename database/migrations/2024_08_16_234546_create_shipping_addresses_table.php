@@ -13,22 +13,20 @@ return new class extends Migration
     {
         Schema::create('shipping_addresses', function (Blueprint $table) {
             $table->id();//
-            //$table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('order_id');//id de la tabla orders
-            $table->string('address_1');//primero direccion de envio
-            $table->string('address_2');//
+            $table->string('address_1');//primera linea direccion de envio
+            $table->string('address_2')->nullable();//
             $table->string('city');
             $table->string('state');
-            $table->integer('postal_code');
+            $table->string('postal_code');
             $table->string('country');
             $table->timestamps();
 
-            //$table->foreign('user_id')->references('id')->on('users')
-           // ->onUpdate('cascade')->onDelete('cascade');
+            //clave foranea para relacionar la direcc con el pedido
         $table->foreign('order_id')->references('id')->on('orders')
             ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->primary(['user_id','order_id']);
+            
         });
     }
 

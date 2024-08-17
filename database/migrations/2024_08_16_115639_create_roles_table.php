@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('role',10);//admin,cliente, empleado
-            $table->text('description');//descripcion del rol
+            $table->string('role', 20)->unique();//admin,cliente, empleado
+            $table->text('description')->nullable();//descripcion del rol
             $table->timestamps();
+
+            // Índice adicional para mejorar la búsqueda por rol
+            $table->index('role');
         });
     }
 

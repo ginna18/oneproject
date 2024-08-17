@@ -13,18 +13,16 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();//identificador unico del pago
-            $table->unsignedBigInteger('order_id');//id de la tabla orders
-            $table->float('amount');//monto pagado
+            $table->unsignedBigInteger('user_id');//id de la tabla
+            $table->decimal('amount',10,2);//monto pagado
             $table->string('payment_method');//metodo de pago(tarjeta, paypal,etc.) 
-            $table->integer('payment_status');//estado del pago(completado, pendiente, fallido)
+            $table->enum('payment_status', ['completed', 'pending', 'failed']);
+            $table->timestamp('payment_date');//fecha de pago
             $table->timestamps();
 
-            $table->foreign('order_id')->references('id')->on('orders')
+            $table->foreign('user_id')->references('id')->on('users')
             ->onUpdate('cascade')->onDelete('cascade');
         
-
-            //establece la clave primaria
-            $table->primary(['order_id']);
         });
     }
 
