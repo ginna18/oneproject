@@ -23,8 +23,6 @@ return new class extends Migration
 
             $table->foreign('category_id')->references('id')->on('categories')
         ->onUpdate('cascade')->onDelete('cascade');
-        //establece la clave primaria
-        
         });
     }
 

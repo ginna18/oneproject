@@ -25,7 +25,7 @@ return new class extends Migration
             ->onUpdate('cascade')->onDelete('cascade');
 
             //establece la clave primaria
-            $table->primary(['order_id','procdut_id']);
+            //$table->primary(['order_id','procdut_id']);
         });
     }
 

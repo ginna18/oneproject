@@ -25,8 +25,6 @@ return new class extends Migration
             //clave foranea para relacionar la direcc con el pedido
         $table->foreign('order_id')->references('id')->on('orders')
             ->onUpdate('cascade')->onDelete('cascade');
-
-            
         });
     }
 
