@@ -19,9 +19,31 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'movil',
+        'fijo',
         'email',
         'password',
+        'role_id',
     ];
+    
+    //un usuario tiene un rol
+    public function role()
+    {   
+        return $this->newBelongsTo(Role::class);
+    }
+    
+    //user->order un usario tiene muchos pedidos
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    //un usuario tiene muchos pagos
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.
